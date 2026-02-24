@@ -1,0 +1,16 @@
+.cl-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.cl-main {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  min-height: 100vh;
+}
+
+@media (max-width: 768px) {
+  .cl-main {
+    margin-left: 0;
+  }
+}

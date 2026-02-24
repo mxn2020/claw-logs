@@ -1,0 +1,111 @@
+.ls-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.ls-toolbar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-bg-secondary);
+    flex-wrap: wrap;
+}
+
+.ls-search {
+    position: relative;
+    flex: 1;
+    min-width: 200px;
+}
+
+.ls-search svg {
+    position: absolute;
+    left: var(--space-3);
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-text-tertiary);
+}
+
+.ls-search .input {
+    padding-left: var(--space-8);
+}
+
+.ls-filters {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    color: var(--color-text-tertiary);
+}
+
+.ls-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-tertiary);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.ls-meta span {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+/* Stream */
+.ls-stream {
+    flex: 1;
+    overflow-y: auto;
+    background: var(--log-bg);
+}
+
+.ls-line {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-1) var(--space-4);
+    border-bottom: 1px solid var(--log-border);
+    font-size: 13px;
+    line-height: 1.6;
+    transition: background var(--transition-fast);
+}
+
+.ls-line:hover {
+    background: var(--log-line-hover);
+}
+
+.ls-time {
+    color: var(--color-text-tertiary);
+    flex-shrink: 0;
+    width: 90px;
+}
+
+.ls-level {
+    flex-shrink: 0;
+    width: 50px;
+    text-align: center;
+}
+
+.ls-instance {
+    color: var(--color-accent-secondary);
+    flex-shrink: 0;
+    width: 60px;
+}
+
+.ls-source {
+    color: var(--color-text-secondary);
+    flex-shrink: 0;
+    width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ls-msg {
+    color: var(--color-text-primary);
+    flex: 1;
+    word-break: break-word;
+}
