@@ -11,6 +11,7 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@geenius-ui/react-css": "file:/Users/mehdinabhani/Projects/antigravity/packages/geenius-ui/packages/react-css",
     "convex": "^1.32.0",
     "lucide-react": "^0.575.0",
     "react": "^19.2.4",
@@ -35,5 +36,19 @@
     "typescript-eslint": "^8.56.1",
     "vite": "^7.3.1",
     "vitest": "^4.0.18"
+  },
+  "description": "Claw Logs",
+  "author": "Mehdi Nabhani",
+  "license": "MIT",
+  "keywords": [
+    "claw",
+    "logs",
+    "react",
+    "typescript",
+    "vite"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mxn2020/claw-logs"
   }
 }

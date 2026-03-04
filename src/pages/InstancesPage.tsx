@@ -1,4 +1,5 @@
 import { Server, Cpu, HardDrive, Activity, Wifi } from "lucide-react";
+import { Button, Card, Badge } from "@geenius-ui/react-css";
 import "./InstancesPage.css";
 
 const instances = [
@@ -12,18 +13,18 @@ export default function InstancesPage() {
         <div className="inst-page">
             <div className="inst-header">
                 <h1><Server size={20} /> Instances</h1>
-                <button className="btn btn-primary btn-sm">+ Connect Instance</button>
+                <Button variant="primary" size="sm">+ Connect Instance</Button>
             </div>
 
             <div className="inst-grid">
                 {instances.map((inst) => (
-                    <div key={inst.name} className="inst-card card">
+                    <Card key={inst.name} padding="md" className="inst-card">
                         <div className="inst-card-header">
                             <div className="inst-card-name">
                                 <span className={`status-dot ${inst.status}`} />
                                 <strong className="mono">{inst.name}</strong>
                             </div>
-                            <span className="badge badge-success">{inst.status}</span>
+                            <Badge variant="success">{inst.status}</Badge>
                         </div>
                         <div className="inst-card-url mono">{inst.url}</div>
 
@@ -51,7 +52,7 @@ export default function InstancesPage() {
                         <div className="inst-card-footer mono">
                             Last seen: {inst.lastSeen}
                         </div>
-                    </div>
+                    </Card>
                 ))}
             </div>
         </div>

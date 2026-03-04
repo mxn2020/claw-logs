@@ -1,20 +1,12 @@
 import { useState } from "react";
-import { Search, Filter, Pause, Play, ChevronDown } from "lucide-react";
+import { Search, Filter, Pause, Play } from "lucide-react";
+import { Button, Badge, Input } from "@geenius-ui/react-css";
 import "./LogStreamPage.css";
 
-interface LogEntry {
-    id: string;
-    timestamp: string;
-    level: "info" | "warn" | "error" | "debug";
-    source: string;
-    instance: string;
-    message: string;
-}
-
-const demoLogs: LogEntry[] = [
-    { id: "1", timestamp: "10:45:32.140", level: "info", source: "agent/mission-commander", instance: "prod-1", message: "Task decomposition complete. Created 4 subtasks for goal: 'Analyze Q4 metrics'" },
-    { id: "2", timestamp: "10:45:32.089", level: "debug", source: "llm/openai", instance: "prod-1", message: "GPT-4o request: 1,240 tokens in / 380 tokens out (latency: 820ms)" },
-    { id: "3", timestamp: "10:45:31.850", level: "info", source: "agent/research-analyst", instance: "prod-2", message: "Starting research task: 'Q4 revenue trends by segment'" },
+const demoLogs = [
+    { id: "1", timestamp: "10:45:32.100", level: "info", source: "agent/content-writer", instance: "prod-1", message: "Starting task: generate blog post for Q4 summary" },
+    { id: "2", timestamp: "10:45:32.050", level: "debug", source: "llm/openai", instance: "prod-2", message: "GPT-4o request: 1,450 tokens in / 520 tokens out (latency: 820ms)" },
+    { id: "3", timestamp: "10:45:31.800", level: "info", source: "agent/research-analyst", instance: "prod-2", message: "Fetched 12 pages from knowledge base. Relevance score: 0.89" },
     { id: "4", timestamp: "10:45:31.500", level: "warn", source: "llm/anthropic", instance: "prod-1", message: "Rate limit approaching: 85% of 60 RPM quota used" },
     { id: "5", timestamp: "10:45:30.990", level: "error", source: "agent/code-architect", instance: "prod-3", message: "Tool execution failed: 'file_write' — permission denied at /output/report.md" },
     { id: "6", timestamp: "10:45:30.550", level: "info", source: "orchestrator/pipeline", instance: "prod-1", message: "Pipeline step 2/5 complete. Handoff to research-analyst." },
@@ -42,40 +34,39 @@ export default function LogStreamPage() {
 
     return (
         <div className="ls-page">
-            {/* Toolbar */}
             <div className="ls-toolbar">
                 <div className="ls-search">
                     <Search size={14} />
-                    <input
+                    <Input
                         type="text"
-                        className="input"
                         placeholder="Search logs... (grep syntax)"
                         value={search}
-                        onChange={(e) => setSearch(e.target.value)}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)}
                     />
                 </div>
                 <div className="ls-filters">
                     <Filter size={14} />
                     {["all", "info", "warn", "error", "debug"].map((l) => (
-                        <button
+                        <Button
                             key={l}
-                            className={`btn btn-sm ${levelFilter === l ? "btn-primary" : ""}`}
+                            size="sm"
+                            variant={levelFilter === l ? "primary" : "outline"}
                             onClick={() => setLevelFilter(l)}
                         >
                             {l.toUpperCase()}
-                        </button>
+                        </Button>
                     ))}
                 </div>
-                <button
-                    className={`btn btn-sm ${paused ? "" : "btn-primary"}`}
+                <Button
+                    size="sm"
+                    variant={paused ? "outline" : "primary"}
                     onClick={() => setPaused(!paused)}
+                    icon={paused ? <Play size={14} /> : <Pause size={14} />}
                 >
-                    {paused ? <Play size={14} /> : <Pause size={14} />}
                     {paused ? "Resume" : "Live"}
-                </button>
+                </Button>
             </div>
 
-            {/* Log count */}
             <div className="ls-meta mono">
                 <span>{filtered.length} entries</span>
                 <span>
@@ -84,12 +75,11 @@ export default function LogStreamPage() {
                 </span>
             </div>
 
-            {/* Log stream */}
             <div className="ls-stream">
                 {filtered.map((log) => (
                     <div key={log.id} className="ls-line">
                         <span className="ls-time mono">{log.timestamp}</span>
-                        <span className={`ls-level badge badge-${log.level}`}>{log.level.toUpperCase()}</span>
+                        <Badge variant={log.level === "error" ? "error" : log.level === "warn" ? "warning" : log.level === "info" ? "info" : "secondary"} size="sm">{log.level.toUpperCase()}</Badge>
                         <span className="ls-instance mono">{log.instance}</span>
                         <span className="ls-source mono">{log.source}</span>
                         <span className="ls-msg mono">{log.message}</span>

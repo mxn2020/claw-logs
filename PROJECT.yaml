@@ -1,0 +1,13 @@
+id: 5f7324cc-efad-4c8d-879b-f95094508386
+name: claw-logs
+description: Claw Logs
+tier: prototype
+lane: oss
+priority: medium
+oss: true
+stack: [typescript, react, convex, vite]
+repo: "https://github.com/mxn2020/claw-logs"
+deploy_url: null
+last_active: 2026-02-24
+tags: []
+notes: 

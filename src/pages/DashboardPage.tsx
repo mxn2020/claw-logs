@@ -1,4 +1,5 @@
 import { Activity, AlertTriangle, Server, TrendingUp, ArrowDown, ArrowUp } from "lucide-react";
+import { Card, Badge } from "@geenius-ui/react-css";
 import "./DashboardPage.css";
 
 const stats = [
@@ -36,10 +37,9 @@ export default function DashboardPage() {
                 </span>
             </div>
 
-            {/* Stats */}
             <div className="dash-stats">
                 {stats.map((s) => (
-                    <div key={s.label} className="dash-stat card">
+                    <Card key={s.label} padding="md" className="dash-stat">
                         <div className="dash-stat-top">
                             <span className="dash-stat-label">{s.label}</span>
                             <s.icon size={16} style={{ color: "var(--color-text-tertiary)" }} />
@@ -49,12 +49,11 @@ export default function DashboardPage() {
                             {s.up ? <ArrowUp size={12} /> : <ArrowDown size={12} />}
                             {s.change}
                         </div>
-                    </div>
+                    </Card>
                 ))}
             </div>
 
-            {/* Volume Chart */}
-            <div className="dash-chart card">
+            <Card padding="lg" className="dash-chart">
                 <h2>Log Volume (24h)</h2>
                 <div className="dash-bars">
                     {volumeData.map((d) => {
@@ -78,23 +77,22 @@ export default function DashboardPage() {
                     <span><span className="legend-dot" style={{ background: "var(--color-error)" }} /> Error</span>
                     <span><span className="legend-dot" style={{ background: "var(--color-debug)" }} /> Debug</span>
                 </div>
-            </div>
+            </Card>
 
-            {/* Recent Errors */}
-            <div className="dash-errors card">
+            <Card padding="lg" className="dash-errors">
                 <h2>Recent Errors</h2>
                 <div className="dash-error-list">
                     {recentErrors.map((e, i) => (
                         <div key={i} className="dash-error-row">
                             <span className="mono" style={{ color: "var(--color-text-tertiary)", width: 70 }}>{e.time}</span>
-                            <span className="badge badge-error">ERROR</span>
+                            <Badge variant="error">ERROR</Badge>
                             <span className="mono" style={{ color: "var(--color-accent-secondary)", width: 60 }}>{e.instance}</span>
                             <span className="mono" style={{ color: "var(--color-text-secondary)", width: 180 }}>{e.source}</span>
                             <span className="mono" style={{ flex: 1 }}>{e.message}</span>
                         </div>
                     ))}
                 </div>
-            </div>
+            </Card>
         </div>
     );
 }

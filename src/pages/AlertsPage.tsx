@@ -1,4 +1,5 @@
 import { AlertTriangle, Bell, Plus, Check, X } from "lucide-react";
+import { Button, Card, Badge } from "@geenius-ui/react-css";
 import "./AlertsPage.css";
 
 const alerts = [
@@ -14,31 +15,31 @@ export default function AlertsPage() {
         <div className="alerts-page">
             <div className="alerts-header">
                 <h1><AlertTriangle size={20} /> Alerts</h1>
-                <button className="btn btn-primary btn-sm"><Plus size={14} /> New Alert</button>
+                <Button variant="primary" size="sm" icon={<Plus size={14} />}>New Alert</Button>
             </div>
 
             <div className="alerts-list">
                 {alerts.map((a) => (
-                    <div key={a.id} className={`alert-row card ${!a.enabled ? "disabled" : ""}`}>
+                    <Card key={a.id} padding="md" className={`alert-row ${!a.enabled ? "disabled" : ""}`}>
                         <div className="alert-info">
                             <div className="alert-name">
                                 <Bell size={14} />
                                 <strong>{a.name}</strong>
-                                {!a.enabled && <span className="badge" style={{ background: "var(--color-bg-tertiary)", color: "var(--color-text-tertiary)" }}>Disabled</span>}
+                                {!a.enabled && <Badge variant="secondary">Disabled</Badge>}
                             </div>
                             <div className="alert-condition mono">{a.condition}</div>
                         </div>
                         <div className="alert-meta">
                             <div className="alert-channel">
-                                <span className="badge badge-info">{a.channel}</span>
+                                <Badge variant="info">{a.channel}</Badge>
                                 <span className="mono">{a.target}</span>
                             </div>
                             <span className="alert-triggered mono">Last: {a.lastTriggered}</span>
                         </div>
                         <div className="alert-actions">
-                            <button className="btn btn-sm btn-ghost">{a.enabled ? <X size={14} /> : <Check size={14} />}</button>
+                            <Button variant="ghost" size="sm" icon={a.enabled ? <X size={14} /> : <Check size={14} />} />
                         </div>
-                    </div>
+                    </Card>
                 ))}
             </div>
         </div>
