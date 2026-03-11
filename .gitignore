@@ -38,3 +38,7 @@ coverage/
 # Misc
 *.tsbuildinfo
 .eslintcache
+
+# Added by AI Agent
+.env.*
+!.env.example
