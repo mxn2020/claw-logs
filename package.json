@@ -40,7 +40,7 @@
   },
   "description": "Centralized log viewer for CLaw ecosystem services",
   "author": "Mehdi Nabhani",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "keywords": [
     "claw",
     "logs",
