@@ -37,7 +37,7 @@ React 19 · TypeScript · Vite · Convex · JetBrains Mono · Vitest
 
 ## 📄 License
 
-MIT © [AVS Media](https://github.com/mxn2020)
+Apache-2.0 © [AVS Media](https://github.com/mxn2020)
 
 ---
 
